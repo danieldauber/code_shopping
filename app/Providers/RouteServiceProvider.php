@@ -37,7 +37,15 @@ class RouteServiceProvider extends ServiceProvider
             return $collection->first();
 
         });
-        
+
+        Route::bind('product', function($value){
+
+            /** @var Collection $collection */
+            $collection = Products::whereId($value)->orWhere('slug', $value)->get();
+            return $collection->first();
+
+        });
+
     }
 
     /**

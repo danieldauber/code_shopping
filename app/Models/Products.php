@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Products extends Model
 {
     use Sluggable;
-    protected  $fillable = ['name', 'description', 'price'];
+    protected  $fillable = ['name', 'description', 'price', 'active'];
 
     /**
      * Return the sluggable configuration array for this model.
