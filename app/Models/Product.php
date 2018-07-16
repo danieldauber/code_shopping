@@ -5,16 +5,12 @@ namespace CodeShopping\Models;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Model;
 
-class Products extends Model
+class Product extends Model
 {
     use Sluggable;
     protected  $fillable = ['name', 'description', 'price', 'active'];
 
-    /**
-     * Return the sluggable configuration array for this model.
-     *
-     * @return array
-     */
+
     public function sluggable(): array
     {
         return [
@@ -22,5 +18,10 @@ class Products extends Model
                 'source' => 'name'
             ]
         ];
+    }
+
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
     }
 }
