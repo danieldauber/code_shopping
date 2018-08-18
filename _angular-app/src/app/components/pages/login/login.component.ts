@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -12,7 +14,9 @@ export class LoginComponent implements OnInit {
     password : 'secret'
   };
 
-  constructor(private http: HttpClient) {
+  showMessageError : boolean = false;
+
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   ngOnInit() {
@@ -23,14 +27,11 @@ export class LoginComponent implements OnInit {
     this.http.post<any>('http://server.local:8000/api/login', this.credentials)
       .subscribe((data) => {
         const token = data.token;
-        this.http.get('http://server.local:8000/api/categories', {
-          headers: {
-            'Authorization' : `Bearer ${token}`
+        window.localStorage.setItem('token', token);
+        this.router.navigate(['categories/list']);
 
-          }
-        })
-          .subscribe()
-      });
+
+      }, () => this.showMessageError = true);
 
     return false;
   }
