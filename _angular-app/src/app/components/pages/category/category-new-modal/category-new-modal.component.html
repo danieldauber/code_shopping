@@ -1,0 +1,22 @@
+<modal (onHide)="hideModal($event)">
+  <h5 modal-title>Nova categoria</h5>
+  <div modal-body>
+    <form (submit)="submit()" id="form">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" name="name" id="name" required
+               [(ngModel)]="category.name">
+      </div>
+      <div class="form-group form-check">
+        <label for="active"><input type="checkbox" class="form-check-input" name="active" id="active" required
+               [(ngModel)]="category.active">
+        Ativo?</label>
+
+      </div>
+    </form>
+  </div>
+  <div modal-footer>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+    <button type="submit" form="form" class="btn btn-primary">Cadastrar</button>
+  </div>
+</modal>
