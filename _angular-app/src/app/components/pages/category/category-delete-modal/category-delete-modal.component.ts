@@ -1,20 +1,18 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {ModalComponent} from "../../../bootstrap/modal/modal.component";
 import {HttpErrorResponse} from "@angular/common/http";
+import {ModalComponent} from "../../../bootstrap/modal/modal.component";
 import {Category} from "../../../../model";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
 
 @Component({
-  selector: 'category-edit-modal',
-  templateUrl: './category-edit-modal.component.html',
-  styleUrls: ['./category-edit-modal.component.css']
+  selector: 'category-delete-modal',
+  templateUrl: './category-delete-modal.component.html',
+  styleUrls: ['./category-delete-modal.component.css']
 })
-export class CategoryEditModalComponent implements OnInit {
+export class CategoryDeleteModalComponent implements OnInit {
 
-  category : Category = {
-    name: '',
-    active: true
-  };
+
+  category : Category = null;
 
   _categoryId: number;
 
@@ -22,7 +20,7 @@ export class CategoryEditModalComponent implements OnInit {
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  constructor(private categoryHttp: CategoryHttpService) {
+  constructor(public categoryHttp: CategoryHttpService) {
   }
 
   ngOnInit() {
@@ -34,22 +32,10 @@ export class CategoryEditModalComponent implements OnInit {
     if (this._categoryId) {
       this.categoryHttp
         .get(this._categoryId)
-        .subscribe(category => this.category = category)
+        .subscribe(category => this.category = category);
     }
 
   }
-
-  submit() {
-    this.categoryHttp
-      .update(this._categoryId, this.category)
-      .subscribe((category) => {
-        this.onSuccess.emit(category);
-        this.modal.hide();
-
-      }, error => this.onError.emit(error));
-
-  }
-
 
   showModal() {
     this.modal.show()
@@ -59,5 +45,17 @@ export class CategoryEditModalComponent implements OnInit {
     console.log($event)
 
   }
+
+  destroy() {
+
+    this.categoryHttp
+      .destroy(this._categoryId)
+      .subscribe((category) => {
+        this.onSuccess.emit(category);
+        this.modal.hide();
+      }, error => this.onError.emit(error));
+
+  }
+
 
 }
