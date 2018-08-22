@@ -17,6 +17,10 @@ import { ProductListComponent } from './components/pages/product/product-list/pr
 import { ProductNewModalComponent } from './components/pages/product/product-new-modal/product-new-modal.component';
 import { ProductEditModalComponent } from './components/pages/product/product-edit-modal/product-edit-modal.component';
 import { ProductDeleteModalComponent } from './components/pages/product/product-delete-modal/product-delete-modal.component';
+import { UserListComponent } from './components/pages/user/user-list/user-list.component';
+import { UserDeleteModalComponent } from './components/pages/user/user-delete-modal/user-delete-modal.component';
+import { UserEditModalComponent } from './components/pages/user/user-edit-modal/user-edit-modal.component';
+import { UserNewModalComponent } from './components/pages/user/user-new-modal/user-new-modal.component';
 const routes : Routes = [
   {
     path: 'login', component: LoginComponent
@@ -26,6 +30,9 @@ const routes : Routes = [
   },
   {
     path: 'products/list', component: ProductListComponent
+  },
+  {
+    path: 'users/list', component: UserListComponent
   },
   {
     path: '',
@@ -47,7 +54,11 @@ const routes : Routes = [
     ProductListComponent,
     ProductNewModalComponent,
     ProductEditModalComponent,
-    ProductDeleteModalComponent
+    ProductDeleteModalComponent,
+    UserListComponent,
+    UserDeleteModalComponent,
+    UserEditModalComponent,
+    UserNewModalComponent
   ],
   imports: [
     BrowserModule,

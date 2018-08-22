@@ -1,0 +1,22 @@
+<modal (onHide)="hideModal($event)">
+  <h5 modal-title>Editar usuário  - {{ user.name }}</h5>
+  <div modal-body>
+    <form (submit)="submit()" id="form">
+      <div class="form-group">
+        <label for="name">Nome</label>
+        <input type="text" class="form-control" name="name" id="name" required
+               [(ngModel)]="user.name">
+      </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" class="form-control" name="password" id="password" required
+               [(ngModel)]="user.password">
+      </div>
+
+    </form>
+  </div>
+  <div modal-footer>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+    <button type="submit" form="form" class="btn btn-primary">Cadastrar</button>
+  </div>
+</modal>
