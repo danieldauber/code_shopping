@@ -12,3 +12,16 @@ export interface Category {
   },
 
 }
+
+export interface Product {
+
+  id?: number,
+  name: string,
+  description: string,
+  price: number,
+  readonly slug?: string,
+  active: boolean,
+  readonly created_at?: { date: string },
+  readonly updated_at?: { date: string },
+
+}

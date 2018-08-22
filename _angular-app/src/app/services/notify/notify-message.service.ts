@@ -13,7 +13,7 @@ export class NotifyMessageService {
     this.alert(text, Types.success)
   }
 
-  error (text:string) {
+  error(text:string) {
     this.alert(text, Types.error)
   }
 
