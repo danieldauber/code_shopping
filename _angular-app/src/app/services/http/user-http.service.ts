@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs/internal/Observable";
 import {User} from "../../model";
 import {map} from "rxjs/operators";
+import {SearchParams, SearchParamsBuilder} from "./http-resource";
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,13 @@ export class UserHttpService {
 
   constructor(private http : HttpClient) { }
 
-  list(page: number) : Observable<{data: Array<User>, meta: any }> {
+  list(searchParams: SearchParams) : Observable<{data: Array<User>, meta: any }> {
 
     const token = window.localStorage.getItem('token');
+
+    const sParams =  new SearchParamsBuilder(searchParams).makeObject();
     const params = new HttpParams( {
-      fromObject : {
-        page: page + ""
-      }
+      fromObject : (<any>sParams)
     });
 
     return this.http

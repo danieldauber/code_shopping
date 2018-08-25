@@ -26,6 +26,11 @@ export interface Product {
 
 }
 
+export interface ProductCategory {
+  product: Product;
+  categories: Category[];
+}
+
 export interface User {
 
   id?: number,

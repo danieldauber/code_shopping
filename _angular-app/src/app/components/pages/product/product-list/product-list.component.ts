@@ -15,7 +15,7 @@ import {Product} from "../../../../model";
 })
 export class ProductListComponent implements OnInit {
 
-  categories : Array<Product> = [];
+  products : Array<Product> = [];
   pagination = {
     page : 1,
     totalItems: 0,
@@ -47,9 +47,9 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    this.productHttp.list(this.pagination.page)
+    this.productHttp.list({page: this.pagination.page})
       .subscribe(response => {
-        this.categories = response.data;
+        this.products = response.data;
         this.pagination.totalItems = response.meta.total;
         this.pagination.itemsPerPage = response.meta.per_page;
       });

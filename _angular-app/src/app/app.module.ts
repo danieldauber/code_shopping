@@ -21,12 +21,19 @@ import { UserListComponent } from './components/pages/user/user-list/user-list.c
 import { UserDeleteModalComponent } from './components/pages/user/user-delete-modal/user-delete-modal.component';
 import { UserEditModalComponent } from './components/pages/user/user-edit-modal/user-edit-modal.component';
 import { UserNewModalComponent } from './components/pages/user/user-new-modal/user-new-modal.component';
+import { NumberFormatBrPipe } from './pipes/number-format-br.pipe';
+import { ProductCategoryListComponent } from './components/pages/product-category/product-category-list/product-category-list.component';
+import { ProductCategoryNewComponent } from './components/pages/product-category/product-category-new/product-category-new.component';
+
 const routes : Routes = [
   {
     path: 'login', component: LoginComponent
   },
   {
     path: 'categories/list', component: CategoryListComponent
+  },
+  {
+    path: 'products/:product/categories/list', component: ProductCategoryListComponent
   },
   {
     path: 'products/list', component: ProductListComponent
@@ -58,7 +65,10 @@ const routes : Routes = [
     UserListComponent,
     UserDeleteModalComponent,
     UserEditModalComponent,
-    UserNewModalComponent
+    UserNewModalComponent,
+    NumberFormatBrPipe,
+    ProductCategoryListComponent,
+    ProductCategoryNewComponent,
   ],
   imports: [
     BrowserModule,
