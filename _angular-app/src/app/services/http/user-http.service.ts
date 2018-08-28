@@ -4,13 +4,14 @@ import {Observable} from "rxjs/internal/Observable";
 import {User} from "../../model";
 import {map} from "rxjs/operators";
 import {SearchParams, SearchParamsBuilder} from "./http-resource";
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserHttpService {
 
-  private baseUrl = 'http://server.local:8000/api/users';
+  private baseUrl = `${environment.api.url}/users`;
 
   constructor(private http : HttpClient) { }
 

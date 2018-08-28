@@ -3,6 +3,7 @@ import { Observable} from 'rxjs/internal/Observable';
 import {Category, ProductCategory} from "../../model";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {map} from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -47,7 +48,7 @@ export class ProductCategoryHttpService {
   }
 
   private getBaseUrl(productId: number, categoryId:number = null): string {
-    let baseUrl = `http://server.local:8000/api/products/${productId}/categories`;
+    let baseUrl = `${environment.api.url}/products/${productId}/categories`;
 
     if(categoryId) {
       baseUrl += `${categoryId}`;
