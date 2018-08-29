@@ -28,6 +28,8 @@ import {AuthService} from "./services/auth.service";
 import { NavbarComponent } from './components/bootstrap/navbar/navbar.component';
 import {RefreshTokenInterceptorService} from "./services/refresh-token-interceptor.service";
 import {AppRoutingModule} from "./app-routing.module";
+import { SortColumnComponent } from './components/common/sort-column/sort-column.component';
+import { CategorySearhFormComponent } from './components/pages/category/category-searh-form/category-searh-form.component';
 
 
 function jwtFactory(authService: AuthService) {
@@ -63,6 +65,8 @@ function jwtFactory(authService: AuthService) {
     ProductCategoryListComponent,
     ProductCategoryNewComponent,
     NavbarComponent,
+    SortColumnComponent,
+    CategorySearhFormComponent,
   ],
   imports: [
     BrowserModule,

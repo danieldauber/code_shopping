@@ -19,8 +19,10 @@ export class CategoryListComponent implements OnInit {
   pagination = {
     page : 1,
     totalItems: 0,
-    itemsPerPage: 2
-  }
+    itemsPerPage: 5
+  };
+
+  sortColumn = {column: '', sort: ''};
 
   @ViewChild(CategoryNewModalComponent)
   categoryNewModal: CategoryNewModalComponent;
@@ -32,6 +34,7 @@ export class CategoryListComponent implements OnInit {
   categoryDeleteModal: CategoryDeleteModalComponent;
 
   public categoryId : number;
+  searchText: string;
 
   constructor(private categoryHttp: CategoryHttpService,
               protected categoryInsertService: CategoryInsertService,
@@ -47,7 +50,11 @@ export class CategoryListComponent implements OnInit {
   }
 
   getCategories() {
-   this.categoryHttp.list({page: this.pagination.page})
+   this.categoryHttp.list({
+     page: this.pagination.page,
+     sort: this.sortColumn.column === '' ? null : this.sortColumn,
+     search: this.searchText
+   })
      .subscribe(response => {
        this.categories = response.data;
        this.pagination.totalItems = response.meta.total;
@@ -58,6 +65,15 @@ export class CategoryListComponent implements OnInit {
   pageChanged(page) {
     this.pagination.page = page;
     this.getCategories();
+  }
+
+  sort(sortColumn){
+    this.getCategories();
+  }
+
+  search(search) {
+    this.searchText = search;
+    this.getCategories()
   }
 
 }
