@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/pages/login/login.component';
-import { FormsModule } from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { CategoryListComponent } from './components/pages/category/category-list/category-list.component';
 import { AlertErrorComponent } from './components/bootstrap/alert-error/alert-error.component';
@@ -30,6 +30,10 @@ import {RefreshTokenInterceptorService} from "./services/refresh-token-intercept
 import {AppRoutingModule} from "./app-routing.module";
 import { SortColumnComponent } from './components/common/sort-column/sort-column.component';
 import { CategorySearhFormComponent } from './components/pages/category/category-searh-form/category-searh-form.component';
+import { CategoryFormComponent } from './components/pages/category/category-form/category-form.component';
+import { FieldErrorComponent } from './components/bootstrap/field-error/field-error.component';
+import { IsInvalidDirective } from './directives/is-invalid.directive';
+import { ListErrorComponent } from './components/bootstrap/list-error/list-error.component';
 
 
 function jwtFactory(authService: AuthService) {
@@ -67,10 +71,15 @@ function jwtFactory(authService: AuthService) {
     NavbarComponent,
     SortColumnComponent,
     CategorySearhFormComponent,
+    CategoryFormComponent,
+    FieldErrorComponent,
+    IsInvalidDirective,
+    ListErrorComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
     NgxPaginationModule,

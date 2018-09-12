@@ -1,8 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {ModalComponent} from "../../../bootstrap/modal/modal.component";
 import {HttpErrorResponse} from "@angular/common/http";
-import {Category} from "../../../../model";
 import {CategoryHttpService} from "../../../../services/http/category-http.service";
+import {FormBuilder, FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'category-edit-modal',
@@ -11,18 +11,20 @@ import {CategoryHttpService} from "../../../../services/http/category-http.servi
 })
 export class CategoryEditModalComponent implements OnInit {
 
-  category : Category = {
-    name: '',
-    active: true
-  };
-
   _categoryId: number;
+  form: FormGroup;
 
   @ViewChild(ModalComponent) modal: ModalComponent;
   @Output() onSuccess: EventEmitter<any> = new EventEmitter<any>();
   @Output() onError: EventEmitter<HttpErrorResponse> = new EventEmitter<HttpErrorResponse>();
 
-  constructor(private categoryHttp: CategoryHttpService) {
+
+  constructor(public categoryHttp: CategoryHttpService, private formBuilder : FormBuilder) {
+    this.form = this.formBuilder.group({
+      name: '',
+      active: true
+    })
+
   }
 
   ngOnInit() {
@@ -34,14 +36,19 @@ export class CategoryEditModalComponent implements OnInit {
     if (this._categoryId) {
       this.categoryHttp
         .get(this._categoryId)
-        .subscribe(category => this.category = category)
+        .subscribe(category => this.form.patchValue(category),
+          responseError => {
+            if (responseError.status == 401) {
+              this.modal.hide();
+            }
+          })
     }
 
   }
 
   submit() {
     this.categoryHttp
-      .update(this._categoryId, this.category)
+      .update(this._categoryId, this.form.value)
       .subscribe((category) => {
         this.onSuccess.emit(category);
         this.modal.hide();

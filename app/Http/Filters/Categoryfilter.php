@@ -1,15 +1,21 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: danieldauber
- * Date: 28/08/18
- * Time: 21:32
- */
+
 
 namespace CodeShopping\Http\Filters;
 
+use Mnabialek\LaravelEloquentFilter\Filters\SimpleQueryFilter;
 
-class Categoryfilter
+class Categoryfilter extends  SimpleQueryFilter
 {
+
+    protected $simplesFilters = ['search'];
+
+    protected $simpleSorts = ['id', 'name', 'created_at'];
+
+    protected function applySearch($value)
+    {
+        $this->query->where('name', 'LIKE', "%$value%");
+    }
+
 
 }
