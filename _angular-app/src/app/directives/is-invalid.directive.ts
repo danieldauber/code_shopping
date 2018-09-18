@@ -13,7 +13,7 @@ export class IsInvalidDirective {
       const nativeElement:HTMLElement = this.element.nativeElement;
 
       if(this.control.invalid && (this.control.dirty || this.control.touched)){
-        if(nativeElement.classList.contains('is-invalid')) {
+        if(!nativeElement.classList.contains('is-invalid')) {
           nativeElement.classList.add('is-invalid');
         }
       } else {

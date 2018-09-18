@@ -1,13 +1,11 @@
 <modal (onHide)="hideModal($event)">
   <h5 modal-title>Nova categoria</h5>
   <div modal-body>
-    <form (submit)="submit()" id="form">
-      {{ form.get('name').errors | json }}
+      <list-error [errors]="errors"></list-error>
       <category-form [form]="form"></category-form>
-    </form>
   </div>
   <div modal-footer>
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-    <button type="submit" form="form" class="btn btn-primary" [disabled]="!form.valid">Cadastrar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Incluir</button>
   </div>
 </modal>

@@ -13,6 +13,7 @@ import fieldsOptions from '../category-form/category-fields-options'
 export class CategoryNewModalComponent implements OnInit {
 
   form: FormGroup;
+  errors = {};
 
   @ViewChild(ModalComponent) modal: ModalComponent;
 
@@ -43,7 +44,14 @@ export class CategoryNewModalComponent implements OnInit {
         });
           this.onSuccess.emit(category);
           this.modal.hide();
-        }, error => this.onError.emit(error)
+        }, responseError => {
+
+            if(responseError.status === 422) {
+              this.errors = responseError.responseError.errors
+            }
+
+            this.onError.emit(responseError)
+      }
       )
   }
 
