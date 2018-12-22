@@ -1,8 +1,8 @@
 <modal (onHide)="hideModal($event)">
-  <h5 modal-title>Nova categoria</h5>
+  <h5 modal-title>Novo Input do Produto</h5>
   <div modal-body>
-      <list-error *ngIf="showErrors()" [errors]="errors"></list-error>
-      <category-form [form]="form"></category-form>
+    <list-error [errors]="errors"></list-error>
+    <product-input-form [form]="form"></product-input-form>
   </div>
   <div modal-footer>
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>

@@ -1,12 +1,11 @@
 <modal (onHide)="hideModal($event)">
   <h5 modal-title>Editar categoria - {{ form.get('name').value }}</h5>
   <div modal-body>
-    <form (submit)="submit()" id="formedit">
-      <!--<category-form [form]="form"></category-form>-->
-    </form>
+      <list-error [errors]="errors"></list-error>
+      <category-form [form]="form"></category-form>
   </div>
   <div modal-footer>
     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-    <button type="submit" form="formedit" class="btn btn-primary">Editar</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!form.valid">Editar</button>
   </div>
 </modal>

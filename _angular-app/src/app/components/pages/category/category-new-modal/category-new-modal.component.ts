@@ -60,6 +60,10 @@ export class CategoryNewModalComponent implements OnInit {
     this.modal.show()
   }
 
+  showErrors(){
+    return Object.keys(this.errors).length != 0
+  }
+
   hideModal($event) {
     console.log($event)
 

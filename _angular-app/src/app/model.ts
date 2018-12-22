@@ -15,20 +15,29 @@ export interface Category {
 
 export interface Product {
 
-  id?: number,
-  name: string,
-  description: string,
-  price: number,
-  readonly slug?: string,
-  active: boolean,
-  readonly created_at?: { date: string },
-  readonly updated_at?: { date: string },
+  id?: number;
+  name: string;
+  description: string;
+  price: number;
+  readonly slug?: string;
+  active: boolean;
+  readonly created_at?: { date: string };
+  readonly updated_at?: { date: string };
 
 }
 
 export interface ProductCategory {
   product: Product;
   categories: Category[];
+}
+
+export interface ProductInput {
+  id? : number;
+  amount: number;
+  readonly created_at?: { date: string };
+  readonly updated_at?: { date: string };
+  product: Product
+
 }
 
 export interface User {
